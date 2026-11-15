@@ -1,43 +1,99 @@
-# setup
+# dev-setup
 
-Personal macOS config. Real files live here; the usual locations are symlinks to them.
+My macOS terminal setup: zsh, Ghostty, Starship and the CLI tools they use.
 
-| File | Linked from |
+The config files live in this repo. Their usual locations are **symlinks** pointing here, so editing `~/.zshrc` (or any other) edits the file in this repo.
+
+| File in repo | Linked from |
 |---|---|
 | `zsh/.zshrc` | `~/.zshrc` |
 | `ghostty/config` | `~/.config/ghostty/config` |
 | `starship/starship.toml` | `~/.config/starship.toml` |
-| `Brewfile` | Homebrew packages and apps |
+| `Brewfile` | terminal apps and tools to install (not linked) |
 
-## New machine
+---
+
+## Set up a new Mac
+
+### 1. Install Homebrew
+
+Open **Terminal** and run:
 
 ```sh
-git clone <this repo> ~/Repos/setup
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+This also installs Apple's command-line tools, which include `git`. When it finishes, run the two `eval` lines it prints under **"Next steps"** so `brew` works in this window.
+
+### 2. Clone this repo
+
+```sh
+mkdir -p ~/Repos
+git clone https://github.com/tareq7755/dev-setup.git ~/Repos/setup
 cd ~/Repos/setup
-./install.sh --brew   # links configs + installs everything in Brewfile
 ```
 
-Run `./install.sh` without `--brew` to only (re)create the links.
-
-## Updating
-
-- Configs: edit as usual (via `~/.zshrc` etc.) — changes land here, then commit.
-- Brewfile after installing/removing something:
-  ```sh
-  brew bundle dump --file=~/Repos/setup/Brewfile --force
-  ```
-
-## Cleanup
+### 3. Run the installer
 
 ```sh
-./cleanup.sh         # dry run: lists what would be removed + sizes
-./cleanup.sh --run   # delete caches, build output, node_modules, empty leftovers
+./install.sh --brew
 ```
 
-Only removes things that regenerate (Xcode/simulator data, package caches, build dirs). Never touches Downloads, Documents or source.
+This will:
+- link the three config files above (any existing ones are kept as `*.bak`)
+- install everything in the `Brewfile`: Ghostty, the Nerd Font, Starship and the CLI tools `.zshrc` uses
+
+It only installs. It never deletes anything.
+
+To only recreate the links, without installing packages, run `./install.sh`.
+
+Languages and dev tools (Go, Java, Node, Flutter, Xcode…) are not part of this setup. Install them on each machine as needed.
+
+### 4. Set your git name and email
+
+These are not stored in this repo. On a work laptop, use your work email.
+
+```sh
+git config --global user.name "Your Name"
+git config --global user.email "you@example.com"
+```
+
+### 5. Switch to Ghostty
+
+Quit Terminal, open **Ghostty** from Applications, and use it from now on. The font, theme and prompt are already set.
+
+---
+
+## Day to day
+
+**Changing a config:** edit it in its usual place (for example `~/.zshrc`). The change lands in this repo; commit and push it.
+
+**Adding a terminal tool:** add a `brew "name"` line to the `Brewfile` by hand, then commit. Don't use `brew bundle dump`: it would list every package on the machine, not just the terminal setup.
+
+**Reloading changes:**
+- zsh: open a new tab
+- Ghostty: press `Cmd+Shift+,`
+- Starship: applies on the next prompt
+
+---
+
+## Free up disk space (optional)
+
+`cleanup.sh` is separate from the installer. It clears caches and build output that regenerate on their own.
+
+```sh
+./cleanup.sh         # dry run: lists what would be deleted, with sizes
+./cleanup.sh --run   # actually delete (quit Xcode and Simulator first)
+```
+
+What it clears: Xcode and simulator caches (it keeps your current phone's iOS support files), package caches, `node_modules` and build folders in `~/Repos`, and empty leftover folders.
+
+It never touches Downloads, Documents, your source code or git history.
+
+---
 
 ## Notes
 
-- Ghostty: reload config with `Cmd+Shift+,`.
-- Starship only shows folder, git, command duration, jobs and prompt char — all language/cloud modules are hidden via `format`.
-- zsh-autosuggestions is installed but intentionally disabled in `.zshrc`.
+- **Prompt:** Starship shows only the folder, git status, slow-command time and `❯`. Language versions, cloud and Docker info are hidden on purpose (see `format` in `starship.toml`).
+- **No autosuggestions:** zsh's grey "ghost text" suggestions are turned off. The line is commented out in `.zshrc`, and the plugin isn't in the Brewfile.
+- **Apple Silicon only:** `.zshrc` expects Homebrew at `/opt/homebrew`, which is where it installs on M-series Macs.
