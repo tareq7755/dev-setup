@@ -1,0 +1,14 @@
+# Only show these modules, in this order. Anything not listed
+# (language versions, package version, cloud, docker, etc.) is hidden.
+format = """
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_status\
+$cmd_duration\
+$jobs\
+$character"""
+
+# No blank line before the prompt
+add_newline = false
