@@ -36,6 +36,9 @@ function y() {
   rm -f -- "$tmp"
 }
 
+# Machine-specific settings, not in this repo
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local
+
 # Plugins (syntax-highlighting must be last)
 # source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
