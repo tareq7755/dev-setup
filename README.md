@@ -72,7 +72,7 @@ Quit Terminal, open **Ghostty** from Applications, and use it from now on. The f
 
 **Reloading changes:**
 - zsh: open a new tab
-- Ghostty: press `Cmd+Shift+,`
+- Ghostty: press `Cmd+Shift+,` (check for typos first with `ghostty +validate-config`; a bad line, like a wrong theme name, can stop the config loading)
 - Starship: applies on the next prompt
 
 ---

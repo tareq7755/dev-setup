@@ -16,7 +16,11 @@ brew "bat"      # file previews in fzf
 brew "eza"      # `ll` and `lt` aliases
 brew "yazi"     # `y` file manager
 
+# Everyday helpers
+brew "btop"     # system monitor
+brew "jq"       # read and filter JSON
+brew "tlrc"     # `tldr <cmd>`: short usage examples
+
 # Optional extras — uncomment to install
 # brew "gh"       # GitHub CLI
 # brew "lazygit"  # git UI in the terminal
-# brew "btop"     # system monitor
