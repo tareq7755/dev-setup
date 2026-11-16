@@ -5,6 +5,7 @@
 cask "ghostty"
 cask "font-jetbrains-mono-nerd-font"
 brew "starship"
+brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
 
 # Tools .zshrc uses

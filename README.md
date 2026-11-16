@@ -95,5 +95,5 @@ It never touches Downloads, Documents, your source code or git history.
 ## Notes
 
 - **Prompt:** Starship shows only the folder, git status, slow-command time and `❯`. Language versions, cloud and Docker info are hidden on purpose (see `format` in `starship.toml`).
-- **No autosuggestions:** zsh's grey "ghost text" suggestions are turned off. The line is commented out in `.zshrc`, and the plugin isn't in the Brewfile.
+- **Autosuggestions:** zsh shows grey "ghost text" from your history as you type. Press → or Ctrl+E to accept it.
 - **Apple Silicon only:** `.zshrc` expects Homebrew at `/opt/homebrew`, which is where it installs on M-series Macs.
