@@ -7,6 +7,7 @@ The config files live in this repo.
 | File in repo | How it's used |
 |---|---|
 | `zsh/.zshrc` | loaded by `~/.zshrc` (see below) |
+| `git/config` | included by `~/.gitconfig`, which keeps your name, email and work settings |
 | `ghostty/config` | symlinked from `~/.config/ghostty/config` |
 | `starship/starship.toml` | symlinked from `~/.config/starship.toml` |
 | `Brewfile` | terminal apps and tools to install (not linked) |
@@ -75,6 +76,8 @@ Quit Terminal, open **Ghostty** from Applications, and use it from now on. The f
 **Changing zsh on every Mac:** edit `~/Repos/setup/zsh/.zshrc`, open a new tab to test, then commit and push.
 
 **Changing zsh on this Mac only:** edit `~/.zshrc`, below the `source` line. Nothing shows up in git.
+
+**Changing git settings on every Mac:** edit `~/Repos/setup/git/config`, then commit and push. Settings for one Mac only (like a work email) go in `~/.gitconfig`.
 
 **Changing Ghostty or Starship:** edit it in its usual place. The change lands in this repo; commit and push it.
 

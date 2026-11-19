@@ -1,0 +1,24 @@
+# Shared git settings, included from ~/.gitconfig on every machine.
+# Name, email and anything work-specific stay in ~/.gitconfig itself.
+
+[push]
+	autoSetupRemote = true      # first push of a new branch sets up the remote branch
+[fetch]
+	prune = true                # drop local refs to branches deleted on the remote
+[branch]
+	sort = -committerdate       # `git branch`: most recently used first
+[tag]
+	sort = version:refname      # v1.10 after v1.9
+[column]
+	ui = auto                   # long branch/tag lists in columns
+[diff]
+	algorithm = histogram       # cleaner diffs
+	colorMoved = plain          # moved code in its own color
+[merge]
+	conflictstyle = zdiff3      # conflicts also show the original version
+[rerere]
+	enabled = true              # remember conflict resolutions and reuse them
+[commit]
+	verbose = true              # show the diff below the commit message in the editor
+[help]
+	autocorrect = prompt        # `git stauts` -> "did you mean status?"

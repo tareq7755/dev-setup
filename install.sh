@@ -2,6 +2,7 @@
 # Set up configs from this repo.
 #   zsh:              ~/.zshrc is a real file on this machine that sources zsh/.zshrc from the repo.
 #                     Lines below the source line are machine-specific and never touch git.
+#   git:              ~/.gitconfig stays local and gets an include of git/config from the repo.
 #   ghostty/starship: symlinked into place.
 # Safe to re-run: nothing is overwritten without a *.bak backup.
 set -euo pipefail
@@ -60,8 +61,20 @@ $src_line
   echo "wrote  $rc (sources $SETUP_DIR/zsh/.zshrc)"
 }
 
+# ~/.gitconfig: keep it local (name, email, work settings) and include the shared git/config.
+setup_gitconfig() {
+  local inc="${SETUP_DIR/#$HOME/~}/git/config"
+  if git config --global --get-all include.path 2>/dev/null | grep -qxF "$inc"; then
+    echo "ok     ~/.gitconfig already includes the repo"
+    return
+  fi
+  git config --global --add include.path "$inc"
+  echo "added  include of $inc to ~/.gitconfig"
+}
+
 setup_zshrc
-link ghostty/config          "$HOME/.config/ghostty/config"
+setup_gitconfig
+link ghostty/config         "$HOME/.config/ghostty/config"
 link starship/starship.toml  "$HOME/.config/starship.toml"
 
 if [ "${1:-}" = "--brew" ]; then
