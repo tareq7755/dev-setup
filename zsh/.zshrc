@@ -1,3 +1,6 @@
+# Shared zsh config, loaded by ~/.zshrc on every machine.
+# Machine-specific settings go in ~/.zshrc itself, below its `source` line.
+
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # PATH
@@ -35,9 +38,6 @@ function y() {
   [ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
   rm -f -- "$tmp"
 }
-
-# Machine-specific settings, not in this repo
-[ -f ~/.zshrc.local ] && source ~/.zshrc.local
 
 # Plugins (syntax-highlighting must be last)
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh

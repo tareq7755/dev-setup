@@ -2,14 +2,20 @@
 
 My macOS terminal setup: zsh, Ghostty, Starship and the CLI tools they use.
 
-The config files live in this repo. Their usual locations are **symlinks** pointing here, so editing `~/.zshrc` (or any other) edits the file in this repo.
+The config files live in this repo.
 
-| File in repo | Linked from |
+| File in repo | How it's used |
 |---|---|
-| `zsh/.zshrc` | `~/.zshrc` |
-| `ghostty/config` | `~/.config/ghostty/config` |
-| `starship/starship.toml` | `~/.config/starship.toml` |
+| `zsh/.zshrc` | loaded by `~/.zshrc` (see below) |
+| `ghostty/config` | symlinked from `~/.config/ghostty/config` |
+| `starship/starship.toml` | symlinked from `~/.config/starship.toml` |
 | `Brewfile` | terminal apps and tools to install (not linked) |
+
+**zsh has two files:**
+- `~/.zshrc`: belongs to this Mac, not in git. Its first line loads the shared file. Anything below that line (work proxies, lines installers add) stays on this Mac.
+- `~/Repos/setup/zsh/.zshrc`: the shared config, in git. Edit this one for changes you want on every Mac.
+
+Ghostty and Starship are symlinks, so editing them in their usual place edits the repo.
 
 ---
 
@@ -40,7 +46,7 @@ cd ~/Repos/setup
 ```
 
 This will:
-- link the three config files above (any existing ones are kept as `*.bak`)
+- create `~/.zshrc` that loads the repo's zsh config, and link the Ghostty and Starship configs (any existing files are kept as `*.bak`)
 - install everything in the `Brewfile`: Ghostty, the Nerd Font, Starship and the CLI tools `.zshrc` uses
 
 It only installs. It never deletes anything.
@@ -66,7 +72,15 @@ Quit Terminal, open **Ghostty** from Applications, and use it from now on. The f
 
 ## Day to day
 
-**Changing a config:** edit it in its usual place (for example `~/.zshrc`). The change lands in this repo; commit and push it.
+**Changing zsh on every Mac:** edit `~/Repos/setup/zsh/.zshrc`, open a new tab to test, then commit and push.
+
+**Changing zsh on this Mac only:** edit `~/.zshrc`, below the `source` line. Nothing shows up in git.
+
+**Changing Ghostty or Starship:** edit it in its usual place. The change lands in this repo; commit and push it.
+
+**Getting changes on another Mac:** `cd ~/Repos/setup && git pull`, then open a new tab. If the `Brewfile` changed, also run `./install.sh --brew`.
+
+**Moving a Mac from the old symlinked `~/.zshrc`:** run `cd ~/Repos/setup && git pull && ./install.sh`. It replaces the symlink with the new `~/.zshrc` and moves anything in `~/.zshrc.local` into it.
 
 **Adding a terminal tool:** add a `brew "name"` line to the `Brewfile` by hand, then commit. Don't use `brew bundle dump`: it would list every package on the machine, not just the terminal setup.
 
