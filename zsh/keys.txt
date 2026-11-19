@@ -1,0 +1,21 @@
+Moving around
+   Alt+← / Alt+→           jump a word left / right
+   Ctrl+A                  jump to start of line
+   Ctrl+E or →             accept grey suggestion / jump to end of line
+   Alt+Backspace           delete previous word
+   Ctrl+U                  delete whole line
+
+Finding things
+   ↑ after typing          past commands starting with what you typed
+   Ctrl+R                  fuzzy search all history
+   Alt+C                   fuzzy cd into a subfolder
+   Ctrl+T                  fuzzy pick a file and insert its path
+   z <name>                jump to a folder you visited before
+   y                       file manager, cd into folder on quit
+   tldr <cmd>              short usage examples for a command
+
+Ghostty
+   Cmd+`                   drop-down terminal
+   Cmd+D / Cmd+Shift+D     split right / down
+   Cmd+Alt+arrows          move between splits
+   Cmd+Shift+Enter         zoom current split

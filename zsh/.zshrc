@@ -55,3 +55,18 @@ bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 bindkey '^[OA' history-substring-search-up     # same keys in application mode
 bindkey '^[OB' history-substring-search-down
+
+# Shortcut reminders, from zsh/keys.txt next to this file
+KEYS_FILE="${${(%):-%x}:A:h}/keys.txt"
+
+# `keys`: print the cheat sheet (section names in bold)
+keys() {
+  awk '/^$/ { next } /^[^ ]/ { printf "\n\033[1m%s\033[0m\n", $0; next } { print }' "$KEYS_FILE"
+  echo
+}
+
+# One random tip per new tab. To turn it off, delete this line.
+[[ -o interactive && -t 1 && -r $KEYS_FILE ]] && awk 'BEGIN { srand() }
+  /^   / { a[++n] = $0 }
+  END { if (n) { l = a[int(rand() * n) + 1]; sub(/^ +/, "", l); sub(/  +/, " — ", l)
+        printf "\033[2mtip: %s  (all: keys)\033[0m\n", l } }' "$KEYS_FILE"
