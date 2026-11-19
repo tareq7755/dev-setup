@@ -7,11 +7,13 @@ cask "font-jetbrains-mono-nerd-font"
 brew "starship"
 brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
+brew "zsh-history-substring-search"  # ↑/↓ search history by what's typed
 
 # Tools .zshrc uses
 brew "zoxide"   # `z` smart cd
 brew "fzf"      # Ctrl+R history search, Ctrl+T file picker
 brew "fd"       # fast file search (used by fzf)
+brew "ripgrep"  # `rg`: fast text search in files
 brew "bat"      # file previews in fzf
 brew "eza"      # `ll` and `lt` aliases
 brew "yazi"     # `y` file manager

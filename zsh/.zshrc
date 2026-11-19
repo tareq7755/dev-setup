@@ -10,12 +10,16 @@ export PATH="$PATH:$HOME/Development/flutter/bin"
 ### GIT auto complete ###
 autoload -Uz compinit && compinit
 zstyle ':completion:*' menu select   # arrow-key menu on tab
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'   # case-insensitive: doc<Tab> -> Documents
 
 # History
 HISTSIZE=50000
 SAVEHIST=50000
 HISTFILE=~/.zsh_history
-setopt SHARE_HISTORY HIST_IGNORE_DUPS HIST_IGNORE_SPACE
+setopt SHARE_HISTORY HIST_IGNORE_SPACE
+setopt HIST_IGNORE_ALL_DUPS   # running a command again drops its older copy
+setopt HIST_REDUCE_BLANKS     # trim extra spaces before saving
+setopt EXTENDED_HISTORY       # save a timestamp with each command
 
 # Tools
 eval "$(starship init zsh)"
@@ -39,6 +43,15 @@ function y() {
   rm -f -- "$tmp"
 }
 
-# Plugins (syntax-highlighting must be last)
+# Plugins (syntax-highlighting before history-substring-search, per its docs)
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /opt/homebrew/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+
+# Up/Down: only cycle through past commands that start with what's typed
+HISTORY_SUBSTRING_SEARCH_PREFIXED=1
+HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=1
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+bindkey '^[OA' history-substring-search-up     # same keys in application mode
+bindkey '^[OB' history-substring-search-down

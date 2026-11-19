@@ -20,6 +20,8 @@ quick-terminal-space-behavior = move
 
 # Behavior
 mouse-hide-while-typing = true
+# Left Option acts as Alt (fzf Alt+C, word jumps); right Option still types special characters
+macos-option-as-alt = left
 copy-on-select = clipboard
 window-save-state = always
 
