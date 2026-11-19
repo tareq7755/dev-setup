@@ -1,21 +1,30 @@
-Moving around
-   Alt+← / Alt+→           jump a word left / right
+Opt = LEFT Option key (right Option still types special characters)
+
+Moving around the line
+   Opt+← / Opt+→           jump a word left / right
    Ctrl+A                  jump to start of line
    Ctrl+E or →             accept grey suggestion / jump to end of line
-   Alt+Backspace           delete previous word
+
+Editing commands
+   Opt+Backspace           delete previous word
    Ctrl+U                  delete whole line
+   Opt+.                   insert last argument of previous command (repeat for older)
+   Opt+Q                   park half-typed command, run another, get it back
 
 Finding things
    ↑ after typing          past commands starting with what you typed
    Ctrl+R                  fuzzy search all history
-   Alt+C                   fuzzy cd into a subfolder
+   Opt+C                   fuzzy cd into a subfolder
    Ctrl+T                  fuzzy pick a file and insert its path
+   cmd **<Tab>             fuzzy pick for any command: vim, cd, kill, ssh
    z <name>                jump to a folder you visited before
+   zi                      fuzzy pick from folders z remembers
+   cd -                    back to previous folder
    y                       file manager, cd into folder on quit
    tldr <cmd>              short usage examples for a command
 
 Ghostty
    Cmd+`                   drop-down terminal
    Cmd+D / Cmd+Shift+D     split right / down
-   Cmd+Alt+arrows          move between splits
+   Cmd+Opt+arrows          move between splits
    Cmd+Shift+Enter         zoom current split

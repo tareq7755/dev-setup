@@ -24,7 +24,7 @@ setopt EXTENDED_HISTORY       # save a timestamp with each command
 # Tools
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"   # adds `z` and `zi`; `cd` untouched
-source <(fzf --zsh)         # ctrl+r fuzzy history, ctrl+t file picker, alt+c fuzzy cd
+source <(fzf --zsh)         # ctrl+r fuzzy history, ctrl+t file picker, opt+c fuzzy cd
 
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
